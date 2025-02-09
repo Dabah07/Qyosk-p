@@ -1,0 +1,58 @@
+const Order = require('../models/Order');
+
+
+exports.getAllOrders = async (req, res, next) => {
+    try {
+        const orders = await Order.find();
+        return res.json(orders.map(order => (order)));
+    } catch (e) {
+        next(e);
+    }
+};
+
+
+exports.getOrders = async (req, res, next) => {
+    try {
+        const order = await Order.findById(req.params.id);
+        if (!order) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+        return res.json(order);
+    } catch (e) {
+        next(e);
+    }
+};
+
+exports.deleteOrder = async (req, res, next) => {
+    try {
+        const order = await Order.findById(req.params.id)
+
+        if (!order) {
+            return res.status(404).json({ message: 'oredr not found' })
+        }
+
+        await order.deleteOne()
+
+    } catch (err) {
+        next(e)
+    }
+};
+
+exports.createOrder = async (req, res, next) => {
+    try {
+    
+        const order = await Order.create({
+            name: req.body.name,
+            price: req.body.price,
+            description: req.body.description,
+            image: req.body.image,
+            category: req.body.category,
+            phone: req.body.phone,
+            address: req.body.address,
+            remarque: req.body.remarque
+        });
+        return res.status(201).json(order);
+    } catch (e) {
+        next(e);
+    }
+}
