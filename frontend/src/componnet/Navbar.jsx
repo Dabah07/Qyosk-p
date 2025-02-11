@@ -49,17 +49,17 @@ export default function Navbar() {
                         <Link href='/'> <h1 className="text-2xl font-extrabold  "> Qyosk</h1></Link>
                     </div>
 
-                    <ul className="flex space-x-12 font-serif    max-w-screen mx-28 ">
-                        <li>
+                    <ul className="flex space-x-12 font-serif     max-w-screen mx-28 ">
+                        <li className="hover:underline ease-in-out duration-500">
                             <Link href='/' >Home</Link>
                         </li>
-                        <li>
+                        <li className="hover:underline ease-in-out ">
                             <Link href='/fpages/product' >Product</Link>
                         </li>
-                        <li>
+                        <li className="hover:underline ease-in-out ">
                             <Link href='/fpages/about' >About</Link>
                         </li>
-                        <li>
+                        <li className="hover:underline ease-in-out ">
                             <Link href='/fpages/contact' >Contact</Link>
                         </li>
                     </ul>

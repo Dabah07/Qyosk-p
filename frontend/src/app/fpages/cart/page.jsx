@@ -1,50 +1,49 @@
 "use client"
 import { removeCart } from "@/lib/CartSlice"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Link from "next/link"
 import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
 
 export default function Cart() {
-    const router = useRouter()
 
+    const router = useRouter()
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
     const [remarque, setRemarque] = useState('')
 
+    const mycrts = useSelector(state => state.cart.products)
+    const totalPrice = mycrts.reduce((old, mycart) => old += (mycart.product.price * mycart.quantity), 0)
+
+    const dispatch = useDispatch()
+
     const submit = async (e) => {
         e.preventDefault()
-        const items = localStorage.getItem('mycrt')
-        const mycrts = JSON.parse(items)
-        const totalPrice = mycrts.reduce((old, mycart) => old += (mycart.product.price * mycart.quantity), 0)
-
-
-
         const data = {
             address,
             phone,
             remarque,
-            products: mycrts
+            mycrts: mycrts.map(cart => ({
+                productId: cart.product.id,
+                quantity: cart.quantity
+            }))
+
         }
-        
+
         try {
             const res = await axios.post('http://localhost:3000/orders', data)
-            console.log('Order:', res.data);
-            router.push('/fpages/thanex')
+            console.log('Order:', res.data)
+            router.push('/fpages/thenx')
+
 
         } catch (error) {
-            console.error('Order error:', error);
+            console.error('Order error:', error.response?.data || error.message)
         }
     }
 
-    const mycrts = useSelector(state => state.cart.products)
-    const totalPrice = mycrts.reduce((old, mycart) => old += (mycart.product.price * mycart.quantity), 0)
 
 
-
-
-    const dispatch = useDispatch()
     return (
         <>
             <section className="bg-gradient-to-t from-[#17100ae0] to-[#512f1faa] max-w-screen-2xl mx-auto  from-10% min-h-full rounded-2xl">
@@ -129,7 +128,7 @@ export default function Cart() {
                                 </div>
                                 <div className="flex justify-around gap-4">
                                     <label >Phone : </label>
-                                    <input className="text-sm p1 px-14 rounded-md bg-[#ffffff20]" type="number" name="" placeholder="Enter Number " id="" onChange={(e) => { setPhone(e.target.value) }} />
+                                    <input className="text-sm p1 px-14 rounded-md bg-[#ffffff20]" type="text" name="" placeholder="Enter Number " id="" onChange={(e) => { setPhone(e.target.value) }} />
                                 </div>
                                 <div className="flex justify-around gap-4">
                                     <label >Remarque: </label>

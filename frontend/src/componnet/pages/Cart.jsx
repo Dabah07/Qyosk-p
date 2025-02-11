@@ -15,12 +15,12 @@ export default function cart({ product }) {
             <Link href={`/fpages/product/${product.id}`}>
                 <img className=" rounded-lg object-cover p-1 w-64  h-2/3" src={product.image} alt={product.name} />
             </Link>
-            <div className="p-3">
+            <div className="p-3  gap-2">
                 <span className="rounded mt-10 text-sm border px-1 text-start  border-primary">
                     category: {product.category}
                 </span>
                 <div className="mt-1 flex justify-between items-center">
-                    <h3 className="text-xl font-serif">
+                    <h3 className="text- font-serif">
                         {product.name}
                     </h3>
                     <h3 className="text-xl font-serif">
@@ -29,11 +29,11 @@ export default function cart({ product }) {
                     
                 </div>
                
-                <div className="flex justify-center  rounded-lg  hover:text-black bg-yellow-500 hover:bg-yellow-600 ease-in-out duration-300">
-                    <Link href='/fpages/confirm' className="w-full py-1 font-serif text-center italic px-2">
+                <div className="flex justify-center  rounded-lg  mt-2 bg-yellow-500 hover:bg-yellow-600 ease-in-out duration-300">
+                    <Link href='/fpages/confirm' className="w-full py-0.5 pt-1 hover:text-black font-serif text-center italic px-1.5">
                         Shop Now
                     </Link>
-                    <button className="rounded-full border border-primary hover:px-2 hover:text-xl ease-in-out duration-300 bg-yellow-800 px-1"onClick={()=>dispatch(addCart(product))}>add</button>
+                    <button className="rounded-full border border-primary hover:px-1 hover:text-xl ease-in-out duration-300 bg-[#17100ac4] px-1"onClick={()=>dispatch(addCart(product))}>add</button>
                 </div>
             </div>
         </div>

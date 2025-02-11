@@ -31,16 +31,26 @@ const Page = () => {
             </div>
             <div className=" ">
                 <div className="flex justify-between mt-2">
-                  <div>
-                  <Filter />
-                  </div>
-                    <div className="flex mb-1 gap-2 border border-primary rounded-md px-3">
+                    <div>
+                        <Filter />
+                    </div>
+                    <div style={{
+                        width: 165,
+                        height: 32,
+                        backgroundColor: '#17100ac4',
+                        padding: 2,
+                        color: '#fff',
+                        overflow: "hidden",
+                        borderRadius: 10,
+                    }} className="flex mb-1 gap-2 text-center rounded-md px-3">
 
-                        <Link className="text-xl  text-white" href='/fpages/cart'> My Product : [ {cartLength} ]</Link>
+                        <Link className="text-xl  text-center text-white" href='/fpages/cart'> My Product : [ {cartLength} ]</Link>
 
                     </div>
                 </div>
                 <hr className="border-primary max-w-screen-lg" />
+
+
 
                 <div className="grid grid-cols-4 gap-4  max-w-screen-lg mt-5 ">
                     {

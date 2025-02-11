@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
-module.exports = mongoose.model('Order',{
-    name:String,
-    price : Number,
-    description : String,
-    image : String,
-    category : String,
-    phone : String,
-    aderss : String,
-    remarque : String,
-
-    
-
+module.exports = mongoose.model('Order', {
+    remarque: String,
+    phone: String,
+    address: String,
+    mycarts: [
+        {
+            product: {type: mongoose.Schema.Types.ObjectId, ref: 'Product'},
+            quantity: Number
+        }
+    ],
+    totalPrice: Number,
+    date: Date
 })
