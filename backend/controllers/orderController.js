@@ -3,7 +3,7 @@ const Product = require('../models/Product');
 
 exports.getAllOrders = async (req, res, next) => {
     try {
-        const orders = await Order.find();
+        const orders = await Order.find({}).populate('mycarts.product');
         return res.json(orders.map(order => (order)));
     } catch (e) {
         next(e);
@@ -13,7 +13,7 @@ exports.getAllOrders = async (req, res, next) => {
 
 exports.getOrders = async (req, res, next) => {
     try {
-        const order = await Order.findById(req.params.id).populate('mycarts.product')
+        const order = await Order.findById(req.params.id)
         return res.json(order)
     } catch (e) {
         next(e)

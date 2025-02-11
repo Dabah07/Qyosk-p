@@ -43,8 +43,8 @@ export default function Laft() {
                         </div>           <p className="text-sm ">DashBord</p>         </Link>
                 </div>
                 <div style={{
-                    width: 70,
-                    height: 75,
+                    width: 60,
+                    height: 65,
                     backgroundColor: '#17100ac4',
                     padding: 5,
 
@@ -55,8 +55,8 @@ export default function Laft() {
 
                 </div>
                 <div style={{
-                    width: 70,
-                    height: 75,
+                    width: 60,
+                    height: 65,
                     backgroundColor: '#17100ac4',
                     padding: 5,
 
